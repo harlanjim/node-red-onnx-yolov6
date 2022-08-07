@@ -1,0 +1,135 @@
+<script type="text/javascript">
+    RED.nodes.registerType('onnx-yolo',{
+        category: 'analysis',
+        color: '#a6bbcf',
+        defaults: {
+            name: {value:""},
+            passthru: {value: "false"},
+            provider: {value: "cpu"},
+            lineColor: { value: "yellow" },
+            detectObjects: {value: ["person"]}
+        },
+        inputs:1,
+        outputs:1,
+        icon: "file.png",
+        label: function() {
+            return this.name||"onnx-yolo";
+        }
+    });
+</script>
+
+<script type="text/html" data-template-name="onnx-yolo">
+    <div class="form-row">
+        <label for="node-input-detectObjects"><i class="fa fa-picture-o"></i> Objects</label>
+        <select type="text" id="node-input-detectObjects" style="width:70%;" multiple>
+            <option value="person">Person</option>
+            <option value="bicycle">Bicycle</option>
+            <option value="car">Car</option>
+            <option value="motorcycle">Motorcycle</option>
+            <option value="airplane">Airplane</option>
+            <option value="bus">Bus</option>
+            <option value="train">Train</option>
+            <option value="truck">Truck</option>
+            <option value="boat">Boat</option>
+            <option value="traffic light">Traffic Light</option>
+            <option value="fire hydrant">Fire Hydrant</option>
+            <option value="stop sign">Stop Sign</option>
+            <option value="parking meter">Parking Meter</option>
+            <option value="bench">Bench</option>
+            <option value="bird">Bird</option>
+            <option value="cat">Cat</option>
+            <option value="dog">Dog</option>
+            <option value="horse">Horse</option>
+            <option value="sheep">Sheep</option>
+            <option value="cow">Cow</option>
+            <option value="elephant">Elephant</option>
+            <option value="bear">Bear</option>
+            <option value="zebra">Zebra</option>
+            <option value="giraffe">Giraffe</option>
+            <option value="backpack">Backpack</option>
+            <option value="umbrella">Umbrella</option>
+            <option value="handbag">Handbag</option>
+            <option value="tie">Tie</option>
+            <option value="suitcase">Suitcase</option>
+            <option value="frisbee">Frisbee</option>
+            <option value="skis">Skis</option>
+            <option value="snowboard">Snowboard</option>
+            <option value="sports ball">Sports Ball</option>
+            <option value="kite">Kite</option>
+            <option value="baseball bat">Baseball Bat</option>
+            <option value="baseball glove">Baseball Glove</option>
+            <option value="skateboard">Skateboard</option>
+            <option value="surfboard">Surfboard</option>
+            <option value="tennis racket">Tennis Racket</option>
+            <option value="bottle">Bottle</option>
+            <option value="wine glass">Wine Glass</option>
+            <option value="cup">Cup</option>
+            <option value="fork">Fork</option>
+            <option value="knife">Knife</option>
+            <option value="spoon">Spoon</option>
+            <option value="bowl">Bowl</option>
+            <option value="banana">Banana</option>
+            <option value="apple">Apple</option>
+            <option value="sandwich">Sandwich</option>
+            <option value="orange">Orange</option>
+            <option value="broccoli">Broccoli</option>
+            <option value="carrot">Carrot</option>
+            <option value="hot dog">Hot Dog</option>
+            <option value="pizza">Pizza</option>
+            <option value="donut">Donut</option>
+            <option value="cake">Cake</option>
+            <option value="chair">Chair</option>
+            <option value="couch">Couch</option>
+            <option value="potted plant">Potted Plant</option>
+            <option value="bed">Bed</option>
+            <option value="dining table">Dining Table</option>
+            <option value="toilet">Toilet</option>
+            <option value="tv">TV</option>
+            <option value="laptop">Laptop</option>
+            <option value="mouse">Mouse</option>
+            <option value="remote">Remote</option>
+            <option value="keyboard">Keyboard</option>
+            <option value="cell phone">Cell Phone</option>
+            <option value="microwave">Microwave</option>
+            <option value="oven">Oven</option>
+            <option value="toaster">Toaster</option>
+            <option value="sink">Sink</option>
+            <option value="refrigerator">Refrigerator</option>
+            <option value="book">Book</option>
+            <option value="clock">Clock</option>
+            <option value="vase">Vase</option>
+            <option value="scissors">Scissors</option>
+            <option value="teddy bear">Teddy Bear</option>
+            <option value="hair drier">Hair Drier</option>
+            <option value="toothbrush'">Toothbrush</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-provider"><i class="fa fa-picture-o"></i>Provider</label>
+        <select type="text" id="node-input-provider" style="width:70%;">
+            <option value="cpu">CPU</option>
+            <option value="cuda">CUDA</option>
+        </select>
+    </div>
+    <div class="form-row">
+        <label for="node-input-passthru"><i class="fa fa-picture-o"></i>Passthru</label>
+        <select type="text" id="node-input-passthru" style="width:70%;">
+            <option value="false">Nothing</option>
+            <option value="true">Original Image</option>
+            <option value="bbox">Annotated Image</option>
+        </select>
+    </div>
+    <div class="form-row" id="node-bbox-colour">
+        <label for="node-input-lineColor"><i class="fa fa-paint-brush "></i> Box color</label>
+        <input type="text" id="node-input-lineColor" placeholder="HTML5 color or #rrggbb">
+    </div>    
+    <div class="form-row">
+        <label for="node-input-name"><i class="fa fa-tag"></i> Name</label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+</script>
+
+<script type="text/html" data-help-name="onnx-yolo">
+    <p>Object detection with onnxruntime using the Yolov6 model.</p>
+</script>
