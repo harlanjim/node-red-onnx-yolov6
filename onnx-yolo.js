@@ -56,7 +56,7 @@ module.exports = function(RED) {
             const output = results[session.outputNames[0]]
             const keepers = await processOutput(output)   
             msg.predictions = keepers
-            if (node.passthru === "bbox") {
+            if (node.passthru === "bbox" && keepers.length > 0) {
                 writeImageWithAnnotation(msg, image, keepers)
             }
             node.send(msg);
