@@ -75,7 +75,7 @@ module.exports = function(RED) {
                         // Then get the class with the highest probability
                         const classId = argmax(classes) 
                         // is it one we are looking for?
-                        if (node.detectObjects.indexOf(class_names[classId]) > -1) {
+                        if (node.detectObjects.indexOf(class_names[classId]) > -1 && classes[classId] >= node.predLevel) {
                             predictions.push({
                                 confValue: confValue,
                                 classId: classId,
